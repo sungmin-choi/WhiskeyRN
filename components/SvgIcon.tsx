@@ -9,7 +9,7 @@ type SvgIconProps = SvgProps & {
 };
 function SvgIcon({
   name,
-  fill = 'black',
+
   width: _width,
   height: _height,
   size,
@@ -23,7 +23,7 @@ function SvgIcon({
     ...(height !== undefined ? {height} : {}),
   };
 
-  return <Comp {...props} fill={fill} {...sizeProps} />;
+  return <Comp {...props} {...sizeProps} />;
 }
 
 export default SvgIcon;

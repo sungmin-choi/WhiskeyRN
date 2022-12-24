@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SvgIcon from './components/SvgIcon';
 import * as Icons from './res';
+import Colors from './styles/colors';
 function HomeScreen() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -45,7 +46,6 @@ export default function App() {
         screenOptions={({route}) => ({
           tabBarIcon: ({focused, color, size}) => {
             let iconName: keyof typeof Icons = 'home_fill';
-
             if (route.name === '홈') {
               iconName = focused ? 'home_fill' : 'home_line';
             } else if (route.name === '찜') {
@@ -58,8 +58,8 @@ export default function App() {
             return <SvgIcon name={iconName} size={size} color={color} />;
           },
           headerShown: false,
-          tabBarActiveTintColor: 'black',
-          tabBarInactiveTintColor: 'gray',
+          tabBarActiveTintColor: Colors.GRAY_100,
+          tabBarInactiveTintColor: Colors.GRAY_70,
         })}>
         <Tab.Screen name="홈" component={HomeScreen} />
         <Tab.Screen name="작성" component={EditScreen} />

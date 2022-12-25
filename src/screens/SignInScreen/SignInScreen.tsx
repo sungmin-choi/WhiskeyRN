@@ -5,7 +5,7 @@ const SignInScreen = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Sign In</Text>
+        <Text>Sign In set Change</Text>
         <Image source={Logo} />
       </View>
     </SafeAreaView>

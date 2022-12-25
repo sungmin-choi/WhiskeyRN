@@ -62,6 +62,7 @@ const Test = () => {
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    marginBottom: 24,
   };
 
   return (

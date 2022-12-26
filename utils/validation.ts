@@ -3,3 +3,7 @@ export const emailValidate = (email: string) => {
   return expression.test(email.toLowerCase());
   //머지 변경
 };
+export const trashFunction = () => {
+  const transh = 'dddd';
+  return transh;
+};

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import Colors from '~/../styles/colors';
+import Inputs from '~/../styles/inputs';
 
 interface Props {
   value: string;
@@ -51,7 +52,6 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    height: 46,
-    paddingHorizontal: 11,
+    ...Inputs.TEXT_INPUT_MD,
   },
 });

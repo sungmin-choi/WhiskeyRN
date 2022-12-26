@@ -14,7 +14,7 @@ export default function CustomButton({textValue, onPress, disabled}: Props) {
   return (
     <Pressable
       onPress={onPress}
-      disabled={false}
+      disabled={disabled}
       style={[styles.container, {width: width - 32, backgroundColor: bgcolor}]}>
       <Text style={styles.text}>{textValue}</Text>
     </Pressable>

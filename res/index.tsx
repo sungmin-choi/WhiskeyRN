@@ -6,3 +6,4 @@ export {default as user_line} from './user_line.svg';
 export {default as user_fill} from './user_fill.svg';
 export {default as pencil_line} from './pencil_line.svg';
 export {default as pencil_fill} from './pencil_fill.svg';
+export {default as close_line_r} from './close_line_r.svg';

@@ -6,7 +6,7 @@ import SvgIcon from './src/components/SvgIcon';
 import * as Icons from './res';
 import Colors from './styles/colors';
 import Test from './Test';
-import SignInScreen from './src/screens/SignInScreen/SignInScreen';
+import SignInScreen from './src/screens/SignInScreen';
 
 function EditScreen() {
   return (

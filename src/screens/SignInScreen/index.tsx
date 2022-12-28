@@ -3,17 +3,15 @@ import {
   Image,
   StyleSheet,
   useWindowDimensions,
-  View,
-  Text,
-  Button,
 } from 'react-native';
-import React, {useState, useEffect, useRef, useMemo, useCallback} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Logo from '@assets/images/i_sleep.png';
 import CustomInput from '~/components/CustomInput';
 import CustomButton from '~/components/CustomButton';
 import {emailValidate} from '~/../utils/validation';
-import BottomSheet, {BottomSheetBackdrop} from '@gorhom/bottom-sheet';
+import BottomSheet from '@gorhom/bottom-sheet';
 import 'react-native-gesture-handler';
+import TermsDrawer from './TermsDrawer';
 
 const SignInScreen = () => {
   const [email, setEmail] = useState<string>('');
@@ -21,14 +19,16 @@ const SignInScreen = () => {
   const {height} = useWindowDimensions();
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
-  // variables
-  const snapPoints = useMemo(() => ['40%', '40%'], []);
 
   // callbacks
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
 
+  const handleCloseTerms = () => {
+    bottomSheetRef.current?.forceClose();
+  };
+
+  const handleStartBtn = () => {
+    bottomSheetRef.current?.expand();
+  };
   useEffect(() => {
     setError(!emailValidate(email));
   }, [email]);
@@ -39,7 +39,6 @@ const SignInScreen = () => {
         resizeMode="contain"
         style={[styles.logo, {height: height * 0.3}]}
       />
-
       <CustomInput
         secureTextEntry={false}
         placeholder="이메일"
@@ -50,26 +49,9 @@ const SignInScreen = () => {
       <CustomButton
         textValue="시작하기"
         disabled={!error}
-        onPress={() => bottomSheetRef.current?.expand()}
+        onPress={handleStartBtn}
       />
-
-      <BottomSheet
-        ref={bottomSheetRef}
-        index={1}
-        enablePanDownToClose
-        snapPoints={snapPoints}
-        backdropComponent={props => (
-          <BottomSheetBackdrop opacity={0.7} {...props} />
-        )}
-        onChange={handleSheetChanges}>
-        <View style={styles.modal}>
-          <Button
-            title="닫기"
-            onPress={() => bottomSheetRef.current?.forceClose()}
-          />
-          <Text>Awesome 🎉</Text>
-        </View>
-      </BottomSheet>
+      <TermsDrawer ref={bottomSheetRef} closeDrawer={handleCloseTerms} />
     </SafeAreaView>
   );
 };
@@ -78,10 +60,6 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     padding: 20,
-  },
-  modal: {
-    flex: 1,
-    alignItems: 'center',
   },
   logo: {
     width: '70%',

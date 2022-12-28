@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   text: {
-    ...Fonts.CENTER_16_B_WHITE_700,
+    ...Fonts.CENTER_16_B_WHITE,
   },
 });

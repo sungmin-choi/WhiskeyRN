@@ -15,10 +15,9 @@ import TermsDrawer from './TermsDrawer';
 
 import SvgIcon from '~/components/SvgIcon';
 import Colors from '~/../styles/colors';
-import {useNavigation} from '@react-navigation/native';
+import {SignInProps} from '~/types/authNavigation';
 
-const SignInScreen = () => {
-  const navigation = useNavigation();
+const SignInScreen = ({navigation}: SignInProps) => {
   const [email, setEmail] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
   const {height} = useWindowDimensions();
@@ -32,7 +31,7 @@ const SignInScreen = () => {
   };
 
   const handleStartBtn = () => {
-    navigation.navigate('로그인' as never);
+    navigation.navigate('LogIn' as never, {email: email} as never);
     // bottomSheetRef.current?.expand();
   };
   useEffect(() => {
@@ -45,7 +44,7 @@ const SignInScreen = () => {
         <SvgIcon name="text_logo" />
       </View>
       <CustomInput
-        secureTextEntry={false}
+        type="email"
         placeholder="이메일을 입력해 주세요"
         value={email}
         setValue={setEmail}

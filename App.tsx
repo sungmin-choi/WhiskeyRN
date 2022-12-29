@@ -6,7 +6,7 @@ import SvgIcon from './src/components/SvgIcon';
 import * as Icons from './res';
 import Colors from './styles/colors';
 import Test from './Test';
-import AuthNavigation from '~/screens/AuthNavigation';
+import AuthNavigation from '~/navigation/AuthNavigation';
 
 function EditScreen() {
   return (

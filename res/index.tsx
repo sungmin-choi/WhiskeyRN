@@ -8,3 +8,5 @@ export {default as pencil_line} from './pencil_line.svg';
 export {default as pencil_fill} from './pencil_fill.svg';
 export {default as close_line_r} from './close_line_r.svg';
 export {default as text_logo} from './text_logo.svg';
+export {default as eye_slash} from './eye_slash.svg';
+export {default as eye} from './eye.svg';

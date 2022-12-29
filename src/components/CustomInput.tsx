@@ -5,17 +5,20 @@ import {
   useWindowDimensions,
   ViewStyle,
   Text,
+  Pressable,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Colors from '~/../styles/colors';
 import Inputs from '~/../styles/inputs';
+import SvgIcon from './SvgIcon';
 
 interface Props {
   value: string;
-  setValue: (value: string) => void;
+  type: 'email' | 'password';
+  setValue?: (value: string) => void;
   placeholder?: string;
-  secureTextEntry: boolean;
   marginBottom?: number;
+  marginTop?: number;
   isError?: boolean;
   errorMessage?: string;
 }
@@ -24,12 +27,22 @@ export default function CustomInput({
   value,
   setValue,
   placeholder,
-  secureTextEntry,
   isError,
   errorMessage,
   marginBottom,
+  marginTop,
+  type,
 }: Props) {
   const {width} = useWindowDimensions();
+  const [isSecure, setIsSecure] = useState<boolean>(
+    type === 'password' ? true : false,
+  );
+  const rootStyle: ViewStyle[] = [
+    {
+      marginBottom: marginBottom ? marginBottom : 0,
+      marginTop: marginTop ? marginTop : 0,
+    },
+  ];
   const containerStyle: ViewStyle[] = [
     styles.container,
     {
@@ -40,15 +53,22 @@ export default function CustomInput({
   ];
 
   return (
-    <View style={{marginBottom: marginBottom ? marginBottom : 0}}>
+    <View style={rootStyle}>
       <View style={containerStyle}>
         <TextInput
-          secureTextEntry={secureTextEntry}
+          secureTextEntry={isSecure}
           value={value}
           onChangeText={setValue}
           style={styles.input}
           placeholder={placeholder}
         />
+        {type === 'password' && (
+          <Pressable
+            onPress={() => setIsSecure(prev => !prev)}
+            style={styles.secure_icon}>
+            {isSecure ? <SvgIcon name="eye" /> : <SvgIcon name="eye_slash" />}
+          </Pressable>
+        )}
       </View>
       {isError && <Text style={styles.error_message}>{errorMessage}</Text>}
     </View>
@@ -66,5 +86,10 @@ const styles = StyleSheet.create({
   error_message: {
     color: Colors.RED_100,
     marginTop: 6,
+  },
+  secure_icon: {
+    position: 'absolute',
+    right: 11,
+    top: 11,
   },
 });

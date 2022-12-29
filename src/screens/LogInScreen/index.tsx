@@ -4,14 +4,45 @@ import {
   StyleSheet,
   useWindowDimensions,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Colors from '~/../styles/colors';
+import CustomInput from '~/components/CustomInput';
+import {LogInProps} from '~/types/authNavigation';
+import CustomButton from '~/components/CustomButton';
 
-export default function LogInScreen() {
+export default function LogInScreen({route}: LogInProps) {
   const {height} = useWindowDimensions();
+  const [password, setPassword] = useState<string>('');
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  useEffect(() => {
+    if (password.length > 0) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [password]);
+  const handleSubmit = () => {};
   return (
     <SafeAreaView style={[styles.root, {height: height}]}>
-      <Text>index</Text>
+      <CustomInput
+        type="email"
+        placeholder="이메일을 입력해 주세요"
+        value={route.params?.email}
+        marginBottom={12}
+        marginTop={27}
+      />
+      <CustomInput
+        type="password"
+        placeholder="비밀번호"
+        value={password}
+        setValue={setPassword}
+        marginBottom={48}
+      />
+      <CustomButton
+        textValue="로그인"
+        disabled={isDisabled}
+        onPress={handleSubmit}
+      />
     </SafeAreaView>
   );
 }

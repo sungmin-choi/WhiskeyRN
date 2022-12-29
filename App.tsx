@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -7,7 +7,9 @@ import * as Icons from './res';
 import Colors from './styles/colors';
 import Test from './Test';
 import AuthNavigation from '~/navigation/AuthNavigation';
-
+import {useAppSelector} from '~/redux/store/hooks';
+import {Provider} from 'react-redux';
+import store from '~/redux/store';
 function EditScreen() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -34,13 +36,19 @@ function MyScreen() {
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
-  const [isSignIn, setIsSignIn] = useState<boolean>(true);
+export default function AppRedux() {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+}
+
+function App() {
+  const authStore = useAppSelector(state => state.user);
   return (
     <NavigationContainer>
-      {isSignIn ? (
-        <AuthNavigation />
-      ) : (
+      {authStore.isLoggedIn ? (
         <Tab.Navigator
           initialRouteName="홈"
           screenOptions={({route}) => ({
@@ -67,6 +75,8 @@ export default function App() {
           <Tab.Screen name="찜" component={DibsScreen} />
           <Tab.Screen name="마이" component={MyScreen} />
         </Tab.Navigator>
+      ) : (
+        <AuthNavigation />
       )}
     </NavigationContainer>
   );

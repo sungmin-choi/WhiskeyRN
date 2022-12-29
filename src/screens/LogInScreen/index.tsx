@@ -9,10 +9,12 @@ import Colors from '~/../styles/colors';
 import CustomInput from '~/components/CustomInput';
 import {LogInProps} from '~/types/authNavigation';
 import CustomButton from '~/components/CustomButton';
-
+import {useAppDispatch} from '~/redux/store/hooks';
+import {setLoggedIn} from '~/redux/slices/user';
 export default function LogInScreen({route}: LogInProps) {
   const {height} = useWindowDimensions();
   const [password, setPassword] = useState<string>('');
+  const dsipatch = useAppDispatch();
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   useEffect(() => {
     if (password.length > 0) {
@@ -21,7 +23,9 @@ export default function LogInScreen({route}: LogInProps) {
       setIsDisabled(true);
     }
   }, [password]);
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    dsipatch(setLoggedIn(true));
+  };
   return (
     <SafeAreaView style={[styles.root, {height: height}]}>
       <CustomInput

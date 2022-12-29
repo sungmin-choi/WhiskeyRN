@@ -14,5 +14,6 @@ const Colors = {
   BLACK: '#000000',
   SEOUL_STORE_10: '#FFF2EE',
   SEOUL_STORE_100: '#FF3A04',
+  RED_100: '#FF203B',
 };
 export default Colors;

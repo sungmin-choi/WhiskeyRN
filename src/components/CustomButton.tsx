@@ -10,7 +10,7 @@ interface Props {
 }
 export default function CustomButton({textValue, onPress, disabled}: Props) {
   const {width} = useWindowDimensions();
-  const bgcolor = disabled ? Colors.GRAY_40 : Colors.GRAY_100;
+  const bgcolor = disabled ? Colors.GRAY_40 : '#3A3836';
   return (
     <Pressable
       onPress={onPress}

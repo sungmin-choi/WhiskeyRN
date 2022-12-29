@@ -15,8 +15,10 @@ import TermsDrawer from './TermsDrawer';
 
 import SvgIcon from '~/components/SvgIcon';
 import Colors from '~/../styles/colors';
+import {useNavigation} from '@react-navigation/native';
 
 const SignInScreen = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
   const {height} = useWindowDimensions();
@@ -30,7 +32,8 @@ const SignInScreen = () => {
   };
 
   const handleStartBtn = () => {
-    bottomSheetRef.current?.expand();
+    navigation.navigate('로그인' as never);
+    // bottomSheetRef.current?.expand();
   };
   useEffect(() => {
     setError(!emailValidate(email));

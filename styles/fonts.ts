@@ -17,6 +17,16 @@ const Fonts = {
     textAlign: 'left',
     color: Colors.GRAY_100,
   },
+  LABEL: {
+    textAlign: 'left',
+    color: Colors.GRAY_100,
+    fontStyle: 'normal',
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '400',
+    fontFamily: 'Pretendard',
+    marginBottom: 6,
+  },
 } as const;
 
 export default Fonts;

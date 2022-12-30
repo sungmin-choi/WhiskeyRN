@@ -6,6 +6,7 @@ import LogInScreen from '../screens/LogInScreen';
 import Colors from '~/../styles/colors';
 import {createStackNavigator} from '@react-navigation/stack';
 import {RootStackParamList} from '~/types/authNavigation';
+import SignUpScreen from '~/screens/SignUpScreen';
 export default function AuthNavigation() {
   const Stack = createStackNavigator<RootStackParamList>();
   return (
@@ -24,7 +25,16 @@ export default function AuthNavigation() {
             headerShown: false,
           }}
         />
-        <Stack.Screen name="LogIn" component={LogInScreen} />
+        <Stack.Screen
+          name="LogIn"
+          options={{headerTitle: '로그인'}}
+          component={LogInScreen}
+        />
+        <Stack.Screen
+          name="SignUp"
+          options={{headerTitle: '회원가입'}}
+          component={SignUpScreen}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );

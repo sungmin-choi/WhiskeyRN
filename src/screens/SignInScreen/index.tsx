@@ -31,7 +31,7 @@ const SignInScreen = ({navigation}: SignInProps) => {
   };
 
   const handleStartBtn = () => {
-    navigation.navigate('LogIn' as never, {email: email} as never);
+    navigation.navigate('SignUp' as never, {email: email} as never);
     // bottomSheetRef.current?.expand();
   };
   useEffect(() => {

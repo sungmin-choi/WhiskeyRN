@@ -7,6 +7,7 @@ import Colors from '~/../styles/colors';
 import {createStackNavigator} from '@react-navigation/stack';
 import {RootStackParamList} from '~/types/authNavigation';
 import SignUpScreen from '~/screens/SignUpScreen';
+import OnBoardingScreen from '~/screens/OnBoardingScreen';
 export default function AuthNavigation() {
   const Stack = createStackNavigator<RootStackParamList>();
   return (
@@ -34,6 +35,11 @@ export default function AuthNavigation() {
           name="SignUp"
           options={{headerTitle: '회원가입'}}
           component={SignUpScreen}
+        />
+        <Stack.Screen
+          name="OnBoarding"
+          options={{headerTitle: '회원가입'}}
+          component={OnBoardingScreen}
         />
       </Stack.Group>
     </Stack.Navigator>
